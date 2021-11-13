@@ -1,4 +1,4 @@
-from prometheus_client import start_http_server, Summary
+from prometheus_client import start_http_server, Summary,Histogram
 import random
 import time
 from requests import get
@@ -7,18 +7,18 @@ from requests.api import post
 
 # Create a metric to track time spent and requests made.
 REQUEST_TIME = Summary('zeeshan_request_processing_seconds', 'Time spent processing request')
-# REQUEST_TIME = Summary('zeeshan_request_processing_seconds', 'Time spent processing request')
+REQUEST_TIME2 = Histogram('zeeshan_request_processing_seconds2', 'Time spent processing request2')
 # Decorate function with metric.
-@REQUEST_TIME.time()
-def process_request(t):
-    """A dummy function that takes some time."""
-    time.sleep(t)
-
+# @REQUEST_TIME.time()
+# def process_request(t):
+#     """A dummy function that takes some time."""
+#     time.sleep(t)
 
 def response_request (url):
         response = requests.get(url)
         print (response)
         print(response.elapsed.total_seconds())
+        REQUEST_TIME2.observe(response.elapsed.total_seconds())
 
 
 if __name__ == '__main__':
@@ -27,5 +27,5 @@ if __name__ == '__main__':
     start_http_server(8000)
     # Generate some requests.
     while True:
-        process_request(random.random())
+        # process_request(random.random())
         response_request (url1)
