@@ -5,13 +5,11 @@ from datetime import timedelta
 
 TEST_URL = "https://github.com"
 
-
 def mocked_requests_get(*args, **kwargs):
     mock_resp = mock.Mock()
     mock_resp.elapsed = timedelta(seconds=1)
     mock_resp.ok = kwargs['ok']
     return mock_resp
-
 
 class TestAppMethods(unittest.TestCase):
 
