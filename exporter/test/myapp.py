@@ -13,7 +13,7 @@ response_time = Gauge('sample_external_url_response_ms', 'Response Time in milli
 def response_request (a):
         response = requests.get(a)
       
-        response_time.labels(endpoint=a).set(response.elapsed.total_seconds()/1000)
+        response_time.labels(endpoint=a).set(response.elapsed.total_seconds())
         # response_time2.labels(endpoint=a).observe(response.elapsed.total_seconds())
 
 # Create metrics to check status 
