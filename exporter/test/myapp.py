@@ -10,8 +10,8 @@ sitestatus = Gauge('sample_external_url_up', 'site status check', ['endpoint'])
 response_time = Gauge('sample_external_url_response_ms', 'Response Time in milliseconds', ['endpoint'])
 
 # Create metrics to track time spent and requests made.
-def response_request (url):
-        response = requests.get(url)
+def response_request (a):
+        response = requests.get(a)
       
         response_time.labels(endpoint=a).set(response.elapsed.total_seconds()/1000)
         # response_time2.labels(endpoint=a).observe(response.elapsed.total_seconds())
@@ -23,6 +23,7 @@ def request_state (a):
             sitestatus.labels(endpoint=a).set(0)
         elif  response.status_code == 200:
             sitestatus.labels(endpoint=a).set(1)
+        
 
 if __name__ == '__main__':
     # Start up the server to expose the metrics.
