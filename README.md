@@ -1,22 +1,32 @@
-# websitecheck_exporter
+# Prometheus exporterapp 
 Prometheus exporter for monitoring website status and response times
 
 
 
-# exporterapp ProPrometheus exporterm
-
 * [Installation](#Installation)
-    * [Run only exporter] (#Run-only-exporter-on-docker)
+    * [Deploy using Helm Charts](#Deploy-using-Helm-Charts)   
+    * [Run Only Exporter app on docker](#Run-only-exporter-on-docker)
     * [How to only exporter app on kubernetes](#Run-exporter-in-kubernetes)
     * [Run Prometheus & Grafana with app ](#Run-Prometheus-&-Grafana-with-app)
-    * [Deploy using Helm Charts](#Deploy-using-Helm-Charts)    
+     
 
 
 
 ## Installation
 
 Requirements app can be deployed as docker conaiter, kubernetes deployement with grafana and prometheus or using helm chart details are listed below.
+## Deploy using Helm Charts
+ 
+You can run the app using helm chart as below  
 
+```sh 
+git clone https://github.com/zeshahid/exporterapp.git
+cd exporterapp
+
+helm install {app-name} .\helmexporterapp\
+or 
+helm upgrade --install {app-name} .\helmexporterapp\  
+```
 ## Run only exporter on docker
 
 Run the below to lauch the container and open http://localhost:8000 in browser 
@@ -41,17 +51,7 @@ cd exporterapp/k8smenifests/
  kubectl apply -R -f .
 ```
 
-## Deploy using Helm Charts
- 
-if you 
 
-```sh 
-cd exporterapp
-
-helm install {app-name} .\helmexporterapp\
-or 
-helm upgrade --install {app-name} .\helmexporterapp\  
-```
 ### Build the Image for the python app
 
 ```sh
