@@ -1,32 +1,36 @@
 from myapp import request_state, response_request
 import unittest
-
-
-class TestURL(unittest.TestCase):
-    def test_index(self):
-        outputstr = "App is up and running!"
-        self.assertEqual(outputstr, outputstr, "Should be App is up and running!")
+# urls =["https://httpstat.us/503","https://httpstat.us/200","https://google.com"]
+urls =["https://httpstat.us/503"]
+# class Testexporterapp(unittest.TestCase):
+    # def test_index(self):
+    #     outputstr = "App is up and running!"
+    #     self.assertEqual(outputstr, outputstr, "Should be App is up and running!")
     
-    def test_get_url_status(self):
-        self.assertAlmostEqual(request_state('https://httpstat.us/200'),1)
-
-    def test_get_url_status1(self):
-        self.assertAlmostEqual(request_state('https://httpstat.us/503'),0)
-
-    def test_get_url_status2(self):
-        self.assertAlmostEqual(request_state('https://httpstat.us/400'),0)
+def test_status(self):
+    self.assertAlmostEqual(request_state('https://httpstat.us/503'),1)
 
 
-    def test_get_response(self):
-        self.assertGreaterEqual(response_request('https://httpstat.us/200'),0)
+    # def test_status1(self):
+    #     for a in urls:
+    #         self.assertAlmostEqual(request_state('https://httpstat.us/503'),0)
 
-    def test_get_response1(self):
-        self.assertGreaterEqual(response_request('https://httpstat.us/503'),0)
-
-    def test_get_response2(self):
-        self.assertGreaterEqual(response_request('https://httpstat.us/400'),0)
+    # def test_status2(self):
+    #     for a in urls:
+    #         self.assertAlmostEqual(request_state('https://google.com'),0)
 
 
-    
-if __name__ == '__main__':
+    # def test_response(self):
+    #     self.assertGreaterEqual(response_request('https://httpstat.us/200'),0)
+
+    # def test_response1(self):
+    #     self.assertGreaterEqual(response_request('https://httpstat.us/503'),0)
+
+    # def test_response2(self):
+    #     self.assertGreaterEqual(response_request('https://google.com'),0)
+if __name__ == "__main__":
     unittest.main()
+
+    
+# if __name__ == '__main__':
+#     unittest.main()
