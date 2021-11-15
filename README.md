@@ -29,25 +29,25 @@ helm upgrade --install {app-name} .\helmexporterapp\
 ```
 ## Run only exporter on docker
 
-Run the below to lauch the container and open http://localhost:8000 in browser 
+Run the below to launch the container and open http://localhost:8000 in browser 
 
 ```sh
 docker run -d -p 8000:8000 zeeshanshahid/exporterapp:1.1
 ```
 ## Run exporter in kubernetes 
- kubernetes manifests are in the [exporterapp/k8smenifests](exporterapp/k8smenifests/) directory and can be deployed as is. 
- The manifests will create a exporterapp namespace as well as a deployment and service.  Prometheus scrape configuration are listed [below](#prometheus conf) .
+ kubernetes manifests are in the [exporterapp/k8smanifest](exporterapp/k8smanifest/) directory and can be deployed as is. 
+ The manifests will create a exporterapp namespace as well as a deployment and service.  Prometheus scrape configuration are listed here (#prometheus-conf) .
 
  ```sh 
  kubectl apply -f main.yaml
  ```
 
 ## Run Prometheus & Grafana with app 
-if you don no have the prometherus and grafana already setup you can use (exporterapp/k8smenifests/garfana) and (exporterapp/k8smenifests/prometheus) to deploy Or ulternatively you can use below command to apply all .
+if you don no have the prometherus and grafana already setup you can use [exporterapp/k8smanifest/garfana](exporterapp/k8smanifest/garfana) and [exporterapp/k8smanifest/prometheus](exporterapp/k8smanifest/prometheus) to deploy Or ulternatively you can use below command to apply all .
 
 ```sh
 git clone https://github.com/zeshahid/exporterapp.git
-cd exporterapp/k8smenifests/
+cd exporterapp/k8smanifest/
  kubectl apply -R -f .
 ```
 
