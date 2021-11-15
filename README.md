@@ -6,9 +6,9 @@ Prometheus exporter for monitoring website status and response times
 # exporterapp ProPrometheus exporterm
 
 * [Installation](#Installation)
-* [How to only exporter app on kubernetes](# Run-only-exporter:)
-    * [Run Prometheus & Grafana with app ](#Run Prometheus & Grafana with app )
-    * [Deploy using Helm Charts](#Deploy using Helm Charts)    
+* [How to only exporter app on kubernetes](#Run-only-exporter:)
+    * [Run Prometheus & Grafana with app ](#Run-Prometheus-&-Grafana-with-app)
+    * [Deploy using Helm Charts](#Deploy-using-Helm-Charts)    
 
 
 
