@@ -6,7 +6,7 @@ Prometheus exporter for monitoring website status and response times
 # exporterapp ProPrometheus exporterm
 
 * [Installation](#Installation)
-* [How to only exporter app on kubernetes](#Run-only-exporter:)
+* [How to only exporter app on kubernetes](#Run-only-exporter)
     * [Run Prometheus & Grafana with app ](#Run-Prometheus-&-Grafana-with-app)
     * [Deploy using Helm Charts](#Deploy-using-Helm-Charts)    
 
@@ -14,7 +14,7 @@ Prometheus exporter for monitoring website status and response times
 
 ## Installation
 
-## Run only exporter:
+## Run only exporter
  kubernetes manifests are in the [exporterapp/k8smenifests](exporterapp/k8smenifests/) directory and can be deployed as is. 
  The manifests will create a exporterapp namespace as well as a deployment and service.  Prometheus scrape configuration are listed [below](#prometheus conf) .
 
@@ -38,7 +38,9 @@ if you
 ```sh 
 cd exporterapp
 
-helm upgrade --install exporter .\helmexporterapp\  
+helm install {app-name} .\helmexporterapp\
+or 
+helm upgrade --install {app-name} .\helmexporterapp\  
 ```
 ### Build the Image for the python app
 
@@ -63,6 +65,15 @@ exporter Application: http://localhost:8000/metrics
 Prometheus: http://localhost:9090/
 Grafana: http://localhost:3000/
 ```
+## Metrics
 
-
-## How to deploy on Kubernetes
+```sh
+# HELP sample_external_url_up site status check
+# TYPE sample_external_url_up gauge
+sample_external_url_up{endpoint="https://httpstat.us/503"} 0.0
+sample_external_url_up{endpoint="https://httpstat.us/200"} 1.0
+# HELP sample_external_url_response_ms Response Time in milliseconds
+# TYPE sample_external_url_response_ms gauge
+sample_external_url_response_ms{endpoint="https://httpstat.us/503"} 0.000266561
+sample_external_url_response_ms{endpoint="https://httpstat.us/200"} 0.000270083
+``
