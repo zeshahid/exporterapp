@@ -6,7 +6,8 @@ Prometheus exporter for monitoring website status and response times
 # exporterapp ProPrometheus exporterm
 
 * [Installation](#Installation)
-* [How to only exporter app on kubernetes](#Run-only-exporter)
+    * [Run only exporter] (#Run-only-exporter-on-docker)
+    * [How to only exporter app on kubernetes](#Run-exporter-in-kubernetes)
     * [Run Prometheus & Grafana with app ](#Run-Prometheus-&-Grafana-with-app)
     * [Deploy using Helm Charts](#Deploy-using-Helm-Charts)    
 
@@ -14,7 +15,16 @@ Prometheus exporter for monitoring website status and response times
 
 ## Installation
 
-## Run only exporter
+Requirements app can be deployed as docker conaiter, kubernetes deployement with grafana and prometheus or using helm chart details are listed below.
+
+## Run only exporter on docker
+
+Run the below to lauch the container and open http://localhost:8000 in browser 
+
+```sh
+docker run -d -p 8000:8000 zeeshanshahid/exporterapp:1.1
+```
+## Run exporter in kubernetes 
  kubernetes manifests are in the [exporterapp/k8smenifests](exporterapp/k8smenifests/) directory and can be deployed as is. 
  The manifests will create a exporterapp namespace as well as a deployment and service.  Prometheus scrape configuration are listed [below](#prometheus conf) .
 
@@ -76,4 +86,4 @@ sample_external_url_up{endpoint="https://httpstat.us/200"} 1.0
 # TYPE sample_external_url_response_ms gauge
 sample_external_url_response_ms{endpoint="https://httpstat.us/503"} 0.000266561
 sample_external_url_response_ms{endpoint="https://httpstat.us/200"} 0.000270083
-``
+```
