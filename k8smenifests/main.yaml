@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: exporterapp
-        image: zeeshanshahid/exporterapp:1.0
+        image: zeeshanshahid/exporterapp:1.1
         imagePullPolicy: Never
         ports:
         - name: exporterapp

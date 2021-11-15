@@ -33,6 +33,9 @@ spec:
           - mountPath: /etc/grafana/provisioning/datasources
             name: grafana-datasources
             readOnly: false
+          - mountPath: /etc/grafana/provisioning/dashboards/
+            name: grafana-dashboards
+            readOnly: false
       volumes:
         - name: grafana-storage
           emptyDir: {}
@@ -40,3 +43,12 @@ spec:
           configMap:
               defaultMode: 420
               name: grafana-datasources
+        - name: grafana-dashboards
+          configMap:
+              defaultMode: 420
+              name: grafana-dashboards
+              items:
+              - key: "dashboardsconf.yaml"
+                path: "dashboardsconf.yaml"
+              - key: "exporterapp.json"
+                path: "exporterapp.json"

@@ -25,7 +25,6 @@ def request_state (a):
         elif  response.status_code == 200:
             sitestatus.labels(endpoint=a).set(1)
 
-
 if __name__ == '__main__':
     # Start up the server to expose the metrics.
     start_http_server(8000)

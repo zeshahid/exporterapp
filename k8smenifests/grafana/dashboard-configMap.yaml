@@ -1,4 +1,21 @@
-{
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards
+  namespace: monitoring-v2
+data:
+  dashboardsconf.yaml: |-
+    apiVersion: 1
+    providers:
+    - name: dashboards
+      type: file
+      updateIntervalSeconds: 30
+      options:
+        path: /etc/grafana/provisioning/dashboards/
+        foldersFromFilesStructure: true
+
+  exporterapp.json: |-
+    {
     "annotations": {
       "list": [
         {
@@ -155,7 +172,7 @@
         "targets": [
           {
             "exemplar": true,
-            "expr": "rate(sample_external_url_response_ms{endpoint=\"https://httpstat.us/200\"}[1m])*1000",
+            "expr": "sample_external_url_response_ms{endpoint=\"https://httpstat.us/200\"}",
             "format": "time_series",
             "interval": "",
             "legendFormat": "{{endpoint}}",
@@ -163,7 +180,7 @@
           },
           {
             "exemplar": true,
-            "expr": "rate(sample_external_url_response_ms{endpoint=\"https://httpstat.us/503\"}[1m])*1000",
+            "expr": "sample_external_url_response_ms{endpoint=\"https://httpstat.us/503\"}",
             "format": "time_series",
             "hide": false,
             "interval": "",
@@ -222,7 +239,7 @@
         "targets": [
           {
             "exemplar": true,
-            "expr": "rate(sample_external_url_response_ms{endpoint=\"https://httpstat.us/200\"}[1m])*1000",
+            "expr": "sample_external_url_response_ms{endpoint=\"https://httpstat.us/200\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -278,7 +295,7 @@
         "targets": [
           {
             "exemplar": true,
-            "expr": "rate(sample_external_url_response_ms{endpoint=\"https://httpstat.us/503\"}[1m])* 1000",
+            "expr": "sample_external_url_response_ms{endpoint=\"https://httpstat.us/503\"}",
             "interval": "",
             "legendFormat": "",
             "refId": "A"
@@ -316,4 +333,4 @@
     "title": "Status serverx",
     "uid": "abababab",
     "version": 5
-  }
+    }
