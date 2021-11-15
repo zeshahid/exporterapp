@@ -1,15 +1,8 @@
-FROM pypy:slim
-
+FROM python:alpine
 LABEL maintainer="zeeshanshahid"
-
-EXPOSE 8000
-
-WORKDIR /opt/app
-
+WORKDIR /myapp
 COPY requirements.txt .
-
-RUN pip install -r requirements.txt
-
-COPY . .
-
-CMD python myapp.py
+COPY myapp.py /myapp
+RUN cd /myapp && pip install -r requirements.txt
+EXPOSE 8000
+CMD ["python", "/myapp/myapp.py"]
